@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import Greeting from './Greeting';
+import configureStore from './configureStore';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const store = configureStore();
+
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <h1 style={{ margin: 'auto', width: '80%', textAlign: 'center' }}>
+              To check the greeting go to this
+              {' '}
+              <a href="/greeting">link</a>
+            </h1>
+          )}
+        />
+        <Route
+          path="/greeting"
+          render={() => <Greeting greeting="Friend" />}
+        />
+      </Switch>
+    </BrowserRouter>
+  </Provider>
+);
 
 export default App;
