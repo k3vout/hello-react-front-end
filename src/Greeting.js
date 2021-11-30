@@ -14,7 +14,7 @@ export const getGreetingsSuccess = (json) => ({
 const getGreeting = () => (dispatch) => {
   dispatch({ type: GET_GREETING_REQUEST });
   return axios
-    .get('http://localhost:3000/api/v1/greetings')
+    .get('http://localhost:3001/api/v1/greetings')
     .then((response) => dispatch(getGreetingsSuccess(response.data)))
     .catch((error) => console.log(error));
 };
